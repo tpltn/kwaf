@@ -1,0 +1,20 @@
+version: '3.6'
+
+services:
+  app:
+    build: .
+    entrypoint: java -server -jar kwaf.jar
+    depends_on:
+      - pg
+    environment:
+      - DATABASE_HOST=pg:5432
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+    ports:
+      - 8080:8080
+  pg:
+    image: postgres:10.4
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
