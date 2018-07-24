@@ -1,18 +1,16 @@
 package org.kwaf.kwaf.entities
 
 import java.util.*
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 @Entity
+@Table(name = "events")
 data class Event(@Id val id: String,
-                 val userId: String,
-                 @ManyToOne @JoinColumn(name = "userAgent") val userAgent: UserAgent,
+                 @Column(name = "userid") val userId: String,
+                 @ManyToOne @JoinColumn(name = "useragent") val userAgent: UserAgent,
                  @ManyToOne @JoinColumn(name = "url") val url: URL,
                  val method: String,
-                 val httpStatus: Int,
-                 val committedAt: Date)
+                 @Column(name = "httpstatus") val httpStatus: Int,
+                 @Column(name = "committedat") val committedAt: Date)
 
 // FUTURE: params/body
