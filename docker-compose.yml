@@ -6,15 +6,19 @@ services:
     entrypoint: java -server -jar kwaf.jar
     depends_on:
       - pg
-    environment:
-      - DATABASE_HOST=pg:5432
-      - DATABASE_USER=postgres
-      - DATABASE_PASSWORD=postgres
+    env_file:
+      - .env
     ports:
       - 8080:8080
   pg:
     image: postgres:10.4
-    environment:
-      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - kwaf_pg_data:/var/lib/postgresql
+    env_file:
+      - .env
     ports:
       - 5432:5432
+
+volumes:
+  kwaf_pg_data:
+    external: true
