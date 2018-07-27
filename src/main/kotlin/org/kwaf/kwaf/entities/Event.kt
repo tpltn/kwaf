@@ -12,5 +12,3 @@ data class Event(@Id val id: String,
                  val method: String,
                  @Column(name = "httpstatus") val httpStatus: Int,
                  @Column(name = "committedat") val committedAt: Date)
-
-// FUTURE: params/body

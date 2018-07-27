@@ -2,6 +2,7 @@ package org.kwaf.kwaf.web.controllers
 
 import org.kwaf.kwaf.entities.Event
 import org.kwaf.kwaf.gateways.EventGateway
+import org.kwaf.kwaf.web.inputs.EventInput
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -18,8 +19,9 @@ class EventsController(private val eventGateway: EventGateway) {
 
     @PostMapping("/events")
     @ResponseBody
-    fun createEvent(@RequestBody e: Event): Event {
+    fun createEvent(@RequestBody e: EventInput): Event? {
         // TODO: prepare input object, than map it to Event
-        return eventGateway.save(e)
+//        return eventGateway.save(e)
+        return eventGateway.findAll().singleOrNull()
     }
 }
