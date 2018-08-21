@@ -7,4 +7,9 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "useragents")
-data class UserAgent(@Id val id: UUID, val name: String)
+data class UserAgent(
+        @Id
+        val id: UUID,
+
+        val name: String
+)

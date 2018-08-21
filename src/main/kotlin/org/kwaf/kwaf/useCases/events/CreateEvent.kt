@@ -9,15 +9,25 @@ import org.springframework.stereotype.Component
 import java.util.*
 
 @Component
-class CreateEvent(private val eventGateway: EventGateway,
-                  private val findOrCreateURL: FindOrCreateURL,
-                  private val findOrCreateUserAgent: FindOrCreateUserAgent) {
+class CreateEvent(
+        private val eventGateway: EventGateway,
+        private val findOrCreateURL: FindOrCreateURL,
+        private val findOrCreateUserAgent: FindOrCreateUserAgent
+) {
 
     fun call(eventInput: EventInput): Event {
         val url = findOrCreateURL.call(eventInput.url)
         val userAgent = findOrCreateUserAgent.call(eventInput.userAgent)
 
-        val event = Event(UUID.randomUUID(), eventInput.userId, userAgent, url, eventInput.method, eventInput.httpStatus, eventInput.committedAt)
+        val event = Event(
+                UUID.randomUUID(),
+                eventInput.userId,
+                userAgent,
+                url,
+                eventInput.method,
+                eventInput.httpStatus,
+                eventInput.committedAt
+        )
 
         return eventGateway.save(event)
     }

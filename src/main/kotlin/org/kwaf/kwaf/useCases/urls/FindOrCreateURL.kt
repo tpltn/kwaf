@@ -5,7 +5,6 @@ import org.kwaf.kwaf.gateways.URLGateway
 import org.springframework.stereotype.Component
 import java.util.*
 
-// TODO: move to gateway
 @Component
 class FindOrCreateURL(private val urlGateway: URLGateway) {
     fun call(value: String): URL {

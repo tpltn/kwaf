@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseBody
 
 @Controller
-class EventsController(private val eventGateway: EventGateway,
-                       private val createEvent: CreateEvent) {
+class EventsController(private val eventGateway: EventGateway, private val createEvent: CreateEvent) {
     @GetMapping("/events")
     @ResponseBody
     fun fetchEvents(): Iterable<Event> {
@@ -21,7 +20,10 @@ class EventsController(private val eventGateway: EventGateway,
 
     @PostMapping("/events")
     @ResponseBody
-    fun createEvent(@RequestBody e: EventInput): Event? {
+    fun createEvent(
+            @RequestBody
+            e: EventInput
+    ): Event? {
         return createEvent.call(e)
     }
 }

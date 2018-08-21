@@ -7,4 +7,9 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "urls")
-data class URL(@Id val id: UUID, val value: String)
+data class URL(
+        @Id
+        val id: UUID,
+
+        val value: String
+)

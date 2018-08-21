@@ -4,5 +4,4 @@ import org.kwaf.kwaf.entities.Event
 import org.springframework.data.repository.PagingAndSortingRepository
 import java.util.*
 
-interface EventGateway : PagingAndSortingRepository<Event, UUID> {
-}
+interface EventGateway : PagingAndSortingRepository<Event, UUID>
