@@ -1,43 +1,16 @@
-buildscript {
-    ext {
-        kotlinVersion = '1.2.51'
-        springBootVersion = '2.0.3.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
-        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
-        classpath("org.jetbrains.kotlin:kotlin-noarg:${kotlinVersion}")
-    }
-}
-
 plugins {
     id 'org.flywaydb.flyway' version '5.1.4'
+    id 'org.springframework.boot' version '2.0.4.RELEASE'
+    id 'org.jetbrains.kotlin.jvm' version '1.2.61'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.2.61'
+    id 'org.jetbrains.kotlin.plugin.noarg' version '1.2.61'
+    id 'org.jetbrains.kotlin.plugin.allopen' version '1.2.61'
+    id 'io.spring.dependency-management' version '1.0.6.RELEASE'
 }
-
-apply plugin: 'kotlin'
-apply plugin: 'kotlin-spring'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 group = 'org.kwaf'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.10
-compileKotlin {
-    kotlinOptions {
-        freeCompilerArgs = ["-Xjsr305=strict"]
-        jvmTarget = "1.8"
-    }
-}
-compileTestKotlin {
-    kotlinOptions {
-        freeCompilerArgs = ["-Xjsr305=strict"]
-        jvmTarget = "1.8"
-    }
-}
+sourceCompatibility = 10
 
 repositories {
     mavenCentral()
@@ -50,7 +23,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-devtools')
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('com.fasterxml.jackson.module:jackson-module-kotlin')
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk10")
     compile("org.jetbrains.kotlin:kotlin-reflect")
     compile("org.jetbrains.kotlin:kotlin-jpa")
     compile("javax.xml.bind:jaxb-api")
@@ -59,7 +32,6 @@ dependencies {
     runtime('org.flywaydb:flyway-core')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile('io.projectreactor:reactor-test')
 }
 
 sourceSets {
