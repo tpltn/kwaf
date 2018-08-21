@@ -13,6 +13,7 @@ class FindOrCreateURL(private val urlGateway: URLGateway) {
         if (url != null) {
             return url
         } else {
+            // TODO: handle unique constraint violation
             val urlToCreate = URL(UUID.randomUUID(), value)
             return urlGateway.save(urlToCreate)
         }
