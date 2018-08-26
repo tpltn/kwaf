@@ -12,27 +12,27 @@ Web application firewall as a service
 | +-------------+                              proxied http call                  |
 | | +---------+ |                                      +                          |
 | | | nginx   | |<-----------------------------------+ |                          |
-| | | HAProxy | |                                    | |                          |
+| | | HAProxy | |        read logs                   | |                          |
 | | +---------+ |                                    | |                          |
 | +---+----+----+                                    | |                          |
 |     |    |                                         | |                          |
 |     v    v                                         | |                          |
 | +------------+                                     | |                          |
 | |    API     |                                     | |                          |
-| +------------+                                     v v                          |
+| +------------+                                     | v                          |
 |                                              +------------+                     |
 |                                              |kwaf-ingress|                     |
 |                                              +-----+------+                     |
 |                                                    |                            |
+|                                                    |                            |
+|                                                    |                            |
 |                                                    | push event                 |
-|                                                    |                            |
-|                                                    |                            |
 |                                                    |                            |
 |                                                    |                            |
 |                                                    v                            |
 |              +--------------+                  +-------------------------+      |
 |    counters  | redis        |                  |      kwaf               |      |
-|              | hazelcast    |                  | /createE^ent            |      |
+|              | hazelcast    |                  | /createEvent            |      |
 |              | apache ignite|     persist      | /ratings                |      |
 |              |              |<-----------------+ /ratings/?user_id=userID|      |
 |    logs      | PostgreSQL   |                  |                         |      |
