@@ -9,22 +9,20 @@ data class Event(
         @Id
         val id: UUID,
 
-        @Column(name = "userid")
+        @Column(name = "user_id")
         val userId: UUID,
 
         @ManyToOne
-        @JoinColumn(name = "useragent")
+        @JoinColumn(name = "user_agent_id")
         val userAgent: UserAgent,
 
         @ManyToOne
-        @JoinColumn(name = "url")
-        val url: URL,
+        @JoinColumn(name = "endpoint_id")
+        val endpoint: Endpoint,
 
-        val method: String,
-
-        @Column(name = "httpstatus")
+        @Column(name = "http_status")
         val httpStatus: Int,
 
-        @Column(name = "committedat")
+        @Column(name = "committed_at")
         val committedAt: Date
 )

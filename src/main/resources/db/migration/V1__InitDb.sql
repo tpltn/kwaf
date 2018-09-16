@@ -1,19 +1,24 @@
-CREATE TABLE userAgents(
+CREATE TABLE user_agents (
   id uuid PRIMARY KEY,
-  name VARCHAR
+
+  name VARCHAR UNIQUE
 );
 
-CREATE TABLE urls(
+CREATE TABLE endpoints (
   id uuid PRIMARY KEY,
-  value VARCHAR
+
+  method VARCHAR,
+  url VARCHAR,
+
+  UNIQUE (method, url)
 );
 
 CREATE TABLE events(
   id uuid PRIMARY KEY,
-  userId uuid,
-  userAgent uuid REFERENCES userAgents(id),
-  url uuid REFERENCES urls(id),
-  method VARCHAR,
-  httpStatus INT,
-  committedAt TIMESTAMPTZ
+
+  user_id uuid,
+  user_agent_id uuid REFERENCES user_agents (id),
+  endpoint_id uuid REFERENCES endpoints (id),
+  http_status INT,
+  committed_at TIMESTAMPTZ
 );

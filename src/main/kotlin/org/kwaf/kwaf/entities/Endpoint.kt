@@ -6,10 +6,10 @@ import javax.persistence.Id
 import javax.persistence.Table
 
 @Entity
-@Table(name = "urls")
-data class URL(
+@Table(name = "endpoints")
+data class Endpoint(
         @Id
         val id: UUID,
-
-        val value: String
+        val method: String,
+        val url: String
 )

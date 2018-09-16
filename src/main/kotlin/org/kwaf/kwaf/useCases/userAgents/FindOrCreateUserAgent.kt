@@ -10,11 +10,12 @@ class FindOrCreateUserAgent(private val userAgentGateway: UserAgentGateway) {
     fun call(name: String): UserAgent {
         val userAgent = userAgentGateway.findByName(name)
 
-        if (userAgent != null) {
-            return userAgent
+        return if (userAgent != null) {
+            userAgent
         } else {
+            // TODO: handle unique constraint violation
             val userAgentToCreate = UserAgent(UUID.randomUUID(), name)
-            return userAgentGateway.save(userAgentToCreate)
+            userAgentGateway.save(userAgentToCreate)
         }
     }
 }
