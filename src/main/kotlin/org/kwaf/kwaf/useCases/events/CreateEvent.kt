@@ -2,17 +2,21 @@ package org.kwaf.kwaf.useCases.events
 
 import org.kwaf.kwaf.entities.Event
 import org.kwaf.kwaf.gateways.EventGateway
+import org.kwaf.kwaf.useCases.counters.IncrementCounter
 import org.kwaf.kwaf.useCases.urls.FindOrCreateEndpoint
 import org.kwaf.kwaf.useCases.userAgents.FindOrCreateUserAgent
 import org.kwaf.kwaf.web.inputs.EventInput
 import org.springframework.stereotype.Component
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @Component
+@Transactional
 class CreateEvent(
         private val eventGateway: EventGateway,
         private val findOrCreateEndpoint: FindOrCreateEndpoint,
-        private val findOrCreateUserAgent: FindOrCreateUserAgent
+        private val findOrCreateUserAgent: FindOrCreateUserAgent,
+        private val incrementCounter: IncrementCounter
 ) {
 
     fun call(eventInput: EventInput): Event {
@@ -28,6 +32,9 @@ class CreateEvent(
                 eventInput.committedAt
         )
 
-        return eventGateway.save(event)
+        val savedEvent = eventGateway.save(event)
+        incrementCounter.call(savedEvent.userId, savedEvent.endpoint.id)
+
+        return savedEvent
     }
 }
