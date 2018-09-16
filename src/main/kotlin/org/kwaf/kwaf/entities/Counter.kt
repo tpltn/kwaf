@@ -1,13 +1,10 @@
 package org.kwaf.kwaf.entities
 
-import java.io.Serializable
 import java.util.*
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
+@IdClass(CounterId::class)
 @Table(name = "counters")
 data class Counter(
         @Id
@@ -20,4 +17,4 @@ data class Counter(
 
         @Column(name = "total_events")
         val total_events: Int
-) : Serializable
+)
