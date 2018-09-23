@@ -16,5 +16,5 @@ data class Counter(
         val endpointId: UUID,
 
         @Column(name = "total_events")
-        val total_events: Int
+        val totalEvents: Int
 )
