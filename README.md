@@ -30,13 +30,13 @@ Web application firewall as a service
 |                                                    |                            |
 |                                                    |                            |
 |                                                    v                            |
-|              +--------------+                  +-------------------------+      |
-|    counters  | redis        |                  |      kwaf               |      |
-|              | hazelcast    |                  | /createEvent            |      |
-|              | apache ignite|     persist      | /ratings                |      |
-|              |              |<-----------------+ /ratings/?user_id=userID|      |
-|    logs      | PostgreSQL   |                  |                         |      |
-|              +--------------+                  +-------------------------+      |
+|              +--------------+                  +-----------------------------+  |
+|    counters  | redis        |                  |      kwaf                   |  |
+|              | hazelcast    |                  | POST /events                |  |
+|              | apache ignite|     persist      | GET /ratings                |  |
+|              |              |<-----------------+ GET /ratings?user_id=userID |  |
+|    logs      | PostgreSQL   |                  |                             |  |
+|              +--------------+                  +-----------------------------+  |
 |                                                                                 |
 +---------------------------------------------------------------------------------+
 ``` 
