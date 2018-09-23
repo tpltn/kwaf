@@ -11,9 +11,9 @@ services:
     ports:
       - 8080:8080
   pg:
-    image: postgres:10.4
+    image: postgres:10.5
     volumes:
-      - kwaf_pg_data:/var/lib/postgresql
+    - kwaf_pg_data:/var/lib/postgresql/data
     env_file:
       - .env
     ports:
