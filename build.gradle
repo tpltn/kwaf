@@ -1,16 +1,19 @@
 plugins {
-    id 'org.flywaydb.flyway' version '5.1.4'
     id 'org.springframework.boot' version '2.0.4.RELEASE'
-    id 'org.jetbrains.kotlin.jvm' version '1.2.61'
-    id 'org.jetbrains.kotlin.plugin.spring' version '1.2.61'
-    id 'org.jetbrains.kotlin.plugin.noarg' version '1.2.61'
-    id 'org.jetbrains.kotlin.plugin.allopen' version '1.2.61'
+    id 'org.flywaydb.flyway' version '5.1.4'
+
+    id 'org.jetbrains.kotlin.jvm' version '1.2.70'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.2.70'
+    id 'org.jetbrains.kotlin.plugin.noarg' version '1.2.70'
+    id 'org.jetbrains.kotlin.plugin.allopen' version '1.2.70'
+    id 'org.jetbrains.kotlin.plugin.jpa' version '1.2.70'
     id 'io.spring.dependency-management' version '1.0.6.RELEASE'
 }
 
 group = 'org.kwaf'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 10
+targetCompatibility = 10
 
 repositories {
     mavenCentral()
@@ -24,10 +27,9 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-webflux')
     compile('org.springframework.boot:spring-boot-devtools')
     compile('org.springframework.boot:spring-boot-starter-actuator')
+
     compile('com.fasterxml.jackson.module:jackson-module-kotlin')
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk10")
     compile("org.jetbrains.kotlin:kotlin-reflect")
-    compile("org.jetbrains.kotlin:kotlin-jpa")
     compile("javax.xml.bind:jaxb-api")
 
     runtime('org.postgresql:postgresql')
@@ -39,4 +41,14 @@ dependencies {
 sourceSets {
     main.java.srcDirs += 'src/main/kotlin/'
     test.java.srcDirs += 'src/test/kotlin/'
+}
+
+bootJar {
+    archiveName = "kwaf.${extension}"
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
