@@ -4,7 +4,7 @@ import java.util.*
 import javax.persistence.*
 
 @Entity
-@IdClass(CounterId::class)
+@IdClass(UserEndpointId::class)
 @Table(name = "counters")
 data class Counter(
         @Id

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody
 class CountersController(private val counterGateway: CounterGateway) {
     @GetMapping("/counters")
     @ResponseBody
-    fun fetchEvents(): Iterable<Counter> {
+    fun fetchCounters(): Iterable<Counter> {
         return counterGateway.findAll()
     }
 }
