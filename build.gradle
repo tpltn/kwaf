@@ -22,6 +22,7 @@ repositories {
 // Thymeleaf as a template engine
 // Netty or Tomcat as web server
 // Try WebFlux - data streams (Reactor | Java Flow interfaces | Java Streams)
+// CompletableFuture as replacement for async/await
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-webflux')

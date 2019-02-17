@@ -1,7 +1,10 @@
 package org.kwaf.kwaf.entities
 
 import java.util.*
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.Id
+import javax.persistence.Table
 
 @Entity
 @Table(name = "events")
@@ -12,16 +15,11 @@ data class Event(
         @Column(name = "user_id")
         val userId: UUID,
 
-        @ManyToOne
-        @JoinColumn(name = "user_agent_id")
-        val userAgent: UserAgent,
+        @Column(name = "user_agent")
+        val userAgent: String,
 
-        @ManyToOne
-        @JoinColumn(name = "endpoint_id")
-        val endpoint: Endpoint,
-
-        @Column(name = "http_status")
-        val httpStatus: Int,
+        @Column(name = "host")
+        val host: String,
 
         @Column(name = "committed_at")
         val committedAt: Date

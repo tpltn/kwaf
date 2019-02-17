@@ -24,6 +24,6 @@ class EventsController(private val eventGateway: EventGateway, private val creat
             @RequestBody
             e: EventInput
     ): Event? {
-        return createEvent.call(e)
+        return createEvent.apply(e)
     }
 }
