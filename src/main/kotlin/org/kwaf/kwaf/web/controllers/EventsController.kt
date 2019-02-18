@@ -2,8 +2,8 @@ package org.kwaf.kwaf.web.controllers
 
 import org.kwaf.kwaf.entities.Event
 import org.kwaf.kwaf.gateways.EventGateway
+import org.kwaf.kwaf.inputs.EventInput
 import org.kwaf.kwaf.useCases.events.CreateEvent
-import org.kwaf.kwaf.web.inputs.EventInput
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping

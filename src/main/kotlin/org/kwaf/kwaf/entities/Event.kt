@@ -22,5 +22,8 @@ data class Event(
         val host: String,
 
         @Column(name = "committed_at")
-        val committedAt: Date
+        val committedAt: Date,
+
+        @Column(name = "rating")
+        val rating: Double?
 )

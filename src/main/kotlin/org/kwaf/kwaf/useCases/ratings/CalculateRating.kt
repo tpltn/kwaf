@@ -3,8 +3,10 @@ package org.kwaf.kwaf.useCases.ratings
 import org.kwaf.kwaf.entities.Event
 import org.kwaf.kwaf.gateways.EventGateway
 import org.kwaf.kwaf.gateways.RatingGateway
+import org.springframework.stereotype.Component
 import java.util.function.Function
 
+@Component
 class CalculateRating(private val eventGateway: EventGateway,
                       private val ratingGateway: RatingGateway) : Function<Event, Double> {
     override fun apply(event: Event): Double {

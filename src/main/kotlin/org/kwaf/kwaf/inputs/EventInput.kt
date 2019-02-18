@@ -1,4 +1,4 @@
-package org.kwaf.kwaf.web.inputs
+package org.kwaf.kwaf.inputs
 
 import java.util.*
 

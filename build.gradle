@@ -33,6 +33,9 @@ dependencies {
     compile("org.jetbrains.kotlin:kotlin-reflect")
     compile("javax.xml.bind:jaxb-api")
 
+    // convert output to JSON
+    compile('com.google.code.gson:gson')
+
     runtime('org.postgresql:postgresql')
     runtime('org.flywaydb:flyway-core')
 

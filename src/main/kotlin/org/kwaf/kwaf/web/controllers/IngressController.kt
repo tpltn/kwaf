@@ -1,7 +1,7 @@
 package org.kwaf.kwaf.web.controllers
 
 import org.kwaf.kwaf.entities.Event
-import org.kwaf.kwaf.web.inputs.EventInput
+import org.kwaf.kwaf.inputs.EventInput
 import org.springframework.http.server.reactive.ServerHttpRequest
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestHeader
@@ -20,13 +20,12 @@ class IngressController(private val createEvent: Function<EventInput, Event>) {
             value = ["/ingress/**"]
     )
     @ResponseBody
-    fun call(@RequestHeader(value = "User-Agent") userAgent: String, request: ServerHttpRequest): Mono<Event> {
+    fun call(@RequestHeader(value = "User-Agent") userAgent: String,
+             @RequestHeader(value = "User-Id", required = false) userId: Optional<UUID>,
+             request: ServerHttpRequest): Mono<Event> {
         val host = request.remoteAddress!!.address.hostAddress
+        val input = EventInput(userId.orElse(UUID.randomUUID()), host, userAgent)
 
-        // TODO: define userId
-        val userId = UUID.randomUUID()
-
-        val input = EventInput(userId, host, userAgent)
         return Mono.just(createEvent.apply(input))
     }
 }
