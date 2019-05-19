@@ -31,6 +31,7 @@ class RatingGateway(private val environment: Environment) {
 
         return client
                 .sendAsync(request, HttpResponse.BodyHandlers.ofString())
+//                TODO: parse json rating: 99
                 .thenApply { CalculateRatingResponse(it.body().toDouble()).rating }
                 .exceptionally { exception -> 0.0 }
     }

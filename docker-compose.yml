@@ -21,6 +21,8 @@ services:
       - 5432:5432
   rating:
     build: ./rating
+    ports:
+      - 8081:8081
 
 volumes:
   kwaf_pg_data:
