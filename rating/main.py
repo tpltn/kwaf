@@ -3,6 +3,7 @@ from http.server import *
 
 from rating.entities.event import Event
 from rating.use_cases.calculate_rating import CalculateRatingUseCase
+from rating.use_cases.regressor import Regressor
 
 
 class HTTPHandler(BaseHTTPRequestHandler):
@@ -17,7 +18,7 @@ class HTTPHandler(BaseHTTPRequestHandler):
         objects = json.loads(body)
         events = list(map(lambda o: Event.build(o), objects))
 
-        rating = CalculateRatingUseCase().call(events)
+        rating = CalculateRatingUseCase(Regressor()).call(events)
         self.wfile.write(rating.toJSON())
 
 

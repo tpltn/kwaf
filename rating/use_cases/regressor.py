@@ -1,18 +1,11 @@
+from typing import List
+
 from sklearn import tree
 
-X = [
-    [50], [40], [10]
 
-]
+class Regressor:
+    def call(self, x: List[List[float]], y: List[float], x_to_test: List[float]) -> float:
+        regressor = tree.DecisionTreeRegressor(max_depth=3)
+        regressor.fit(x, y)
 
-y = [
-    1, 1, 0
-]
-
-regressor = tree.DecisionTreeRegressor(max_depth=3)
-regressor.fit(X, y)
-
-X_test = [[50]]
-y_predicted = regressor.predict(X_test)
-
-print(y_predicted)
+        return regressor.predict(x_to_test)[0]
